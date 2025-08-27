@@ -1,0 +1,300 @@
+/* Common CSS for FullStack ePortfolio */
+
+/* Custom Properties */
+:root {
+    --primary-orange: #F28C38;
+    --navy-blue: #1C2526;
+    --dark-orange: #d76a20;
+}
+
+/* General Styling */
+body {
+    background-color: #f8f9fa;
+    color: var(--navy-blue);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Minimal Floating Animation for Cards */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
+}
+
+.float-animation {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Animations */
+.nav-animate {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+.brand-animate {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.link-animate {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+.card-animate {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.3s ease-out forwards;
+}
+
+.section-title {
+    opacity: 0;
+    transform: scale(0.95);
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.btn-animate {
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-animate:hover {
+    transform: scale(1.03);
+}
+
+.footer-animate {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.3s ease-out forwards;
+}
+
+.toast-animate {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.3s ease-out forwards;
+}
+
+@keyframes slideIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: var(--navy-blue) !important;
+}
+
+.navbar-dark .navbar-brand,
+.navbar-dark .nav-link {
+    color: var(--primary-orange) !important;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-dark .nav-link:hover {
+    color: #fff !important;
+    transform: scale(1.1);
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(242, 140, 56, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Colors */
+.bg-orange {
+    background-color: var(--primary-orange) !important;
+}
+
+.text-orange {
+    color: var(--primary-orange) !important;
+}
+
+.bg-gradient-orange {
+    background: linear-gradient(135deg, var(--primary-orange) 0%, var(--dark-orange) 100%) !important;
+}
+
+.btn-orange {
+    background-color: var(--primary-orange);
+    border-color: var(--primary-orange);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-orange:hover {
+    background-color: var(--dark-orange);
+    border-color: var(--dark-orange);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-operator {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+}
+
+.btn-operator.selected {
+    background-color: var(--dark-orange);
+    border-color: var(--dark-orange);
+    box-shadow: 0 0 8px rgba(242, 140, 56, 0.7);
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* Card Styling */
+.custom-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+}
+
+.custom-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    border-bottom: 1px solid rgba(242, 140, 56, 0.3);
+    padding: 0.75rem 1rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.js-card {
+    background-color: #f9f9f9;
+}
+
+/* Ensure equal card heights */
+.h-100 {
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    flex-grow: 1;
+}
+
+/* Section Divider */
+.section-divider {
+    border: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--primary-orange), transparent);
+    margin: 3rem 0;
+}
+
+/* Input and Button Styling */
+.form-control {
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 8px rgba(242, 140, 56, 0.5);
+}
+
+.list-group-item {
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.list-group-item:hover {
+    background-color: #f0f0f0;
+}
+
+.todo-text {
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.todo-text:hover {
+    color: var(--primary-orange);
+}
+
+/* Task Counter */
+#taskCounter {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+}
+
+/* Real-Time Input Display */
+#realTimeInputDisplay {
+    font-size: 1rem;
+    color: #555;
+    word-break: break-word;
+}
+
+/* Carousel Styling */
+.carousel-inner img {
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    background: rgba(0, 0, 0, 0.3);
+    width: 10%;
+    border-radius: 8px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Toast Styling */
+.toast {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.toast-header {
+    background: var(--primary-orange);
+    color: white;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: var(--navy-blue);
+    color: var(--primary-orange);
+}
+
+/* Bootstrap Icons */
+.bi {
+    font-size: 1.5rem;
+    margin-right: 8px;
+}
+
+/* General Layout */
+main.container {
+    max-width: 1200px;
+    padding: 0 1rem;
+}
+
+.row.g-4 {
+    margin-bottom: 2rem;
+}

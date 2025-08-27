@@ -1,0 +1,24 @@
+body {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+.container {
+  max-width: 900px;
+  margin-top: 40px;
+}
+.card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  padding: 20px;
+}
+h1 {
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
+/* ... keep rest of your button, input, modal, error styles ... */

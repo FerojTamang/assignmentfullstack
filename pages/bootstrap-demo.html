@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 - Modern Interactive Demo</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
+ <style>
+    :root {
+        --primary-gradient: linear-gradient(135deg, #1a3c6d 0%, #ff6200 100%); /* Navy blue to orange */
+        --secondary-gradient: linear-gradient(135deg, #ff8c00 0%, #c94c00 100%); /* Orange to darker orange */
+        --success-gradient: linear-gradient(135deg, #2c5282 0%, #68d391 100%); /* Navy blue to green for contrast */
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Hero Section - Fixed positioning and scroll behavior */
+    .hero-section {
+        background: var(--primary-gradient);
+        min-height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-top: 70px;
+        z-index: 1;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,0 1000,1000"/></svg>');
+        background-size: cover;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+        font-weight: 700;
+        background: linear-gradient(45deg, #fff, #ffdab9); /* White to peach for text */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+
+    /* About Section - Proper positioning to avoid overlap */
+    #about {
+        position: relative;
+        z-index: 2;
+        margin-top: 0;
+        padding-top: 80px;
+        background: #f8f9fa;
+    }
+
+    /* Navbar */
+    .navbar-custom {
+        backdrop-filter: blur(10px);
+        background: rgba(26, 60, 109, 0.95); /* Navy blue semi-transparent */
+        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+
+    .navbar-custom.scrolled {
+        background: rgba(26, 60, 109, 0.98); /* Slightly more opaque navy blue */
+    }
+
+    .navbar-brand, .nav-link {
+        color: #fff !important; /* White text for contrast */
+    }
+
+    .navbar-brand i, .nav-link i {
+        color: #ff6200; /* Orange for icons */
+    }
+
+    /* Card Animations */
+    .feature-card {
+        background: linear-gradient(145deg, #ffffff, #fff5e6); /* White to light peach */
+        border: none;
+        border-radius: 20px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,98,0,0.4), transparent); /* Orange shine */
+        transition: left 0.5s;
+    }
+
+    .feature-card:hover::before {
+        left: 100%;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+
+    .feature-icon {
+        font-size: 3rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+        transform: scale(1.2) rotate(360deg);
+    }
+
+    /* Custom Carousel */
+    .carousel-item img {
+        height: 600px;
+        object-fit: cover;
+        filter: brightness(0.7);
+    }
+
+    .carousel-caption {
+        background: rgba(26, 60, 109, 0.7); /* Navy blue semi-transparent */
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 2rem;
+        bottom: 50px;
+    }
+
+    /* Progress Bars */
+    .progress-modern {
+        height: 25px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.2);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .progress-bar-modern {
+        background: var(--success-gradient);
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .progress-bar-modern::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(45deg, transparent 33%, rgba(255,98,0,0.3) 50%, transparent 66%); /* Orange shine */
+        animation: shine 2s infinite;
+    }
+
+    @keyframes shine {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+
+    /* Buttons */
+    .btn-gradient {
+        background: var(--primary-gradient);
+        border: none;
+        border-radius: 50px;
+        padding: 12px 30px;
+        color: white;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-gradient::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .btn-gradient:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .btn-gradient:hover::before {
+        left: 100%;
+    }
+
+    /* Modal Enhancements */
+    .modal-content {
+        border: none;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+    }
+
+    .modal-header {
+        background: var(--primary-gradient);
+        color: white;
+        border-radius: 20px 20px 0 0;
+    }
+
+    /* Offcanvas */
+    .offcanvas-custom {
+        background: var(--secondary-gradient);
+        color: white;
+    }
+
+    /* Toast */
+    .toast-custom {
+        background: rgba(255,245,230,0.95); /* Light peach background */
+        backdrop-filter: blur(10px);
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    /* Section Spacing */
+    .section {
+        padding: 80px 0;
+        position: relative;
+    }
+
+    /* Background Patterns */
+    .bg-pattern {
+        background-image: 
+            radial-gradient(circle at 25% 25%, rgba(255,98,0,0.1) 2px, transparent 2px), /* Orange dots */
+            radial-gradient(circle at 75% 75%, rgba(26,60,109,0.1) 2px, transparent 2px); /* Navy blue dots */
+        background-size: 50px 50px;
+    }
+
+    /* Accordion */
+    .accordion-button:not(.collapsed) {
+        background: var(--primary-gradient);
+        color: white;
+    }
+
+    .accordion-button {
+        border-radius: 15px !important;
+    }
+
+    /* Form Controls */
+    .form-control:focus {
+        border-color: #ff6200; /* Orange border on focus */
+        box-shadow: 0 0 0 0.2rem rgba(255, 98, 0, 0.25);
+    }
+
+    /* Tooltips and Popovers */
+    .tooltip-inner {
+        background: var(--primary-gradient);
+    }
+
+    /* Pagination */
+    .page-link {
+        border-radius: 10px;
+        margin: 0 2px;
+        border: none;
+        color: #1a3c6d; /* Navy blue */
+    }
+
+    .page-item.active .page-link {
+        background: var(--primary-gradient);
+        border: none;
+        color: white;
+    }
+
+    /* Scroll down indicator */
+    .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        animation: bounce 2s infinite;
+        z-index: 3;
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateX(-50%) translateY(0);
+        }
+        40% {
+            transform: translateX(-50%) translateY(-10px);
+        }
+        60% {
+            transform: translateX(-50%) translateY(-5px);
+        }
+    }
+
+    /* Smooth scroll behavior */
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold animate__animated animate__bounceIn" href="#">
+            <i class="bi bi-bootstrap-fill me-2"></i>Bootstrap Demo
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./html-demo.html">HTML Demo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./css-demo.html">CSS Demo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./javascript-demo.html">JavaScript Demo</a>
+                </li>
+            
+                    
+                <li class="nav-item"><a class="nav-link" href="./fullstack-demo.html">Fullstack Demo</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+    
+                </li>
+            </ul>
+            <div class="d-flex">
+                <button class="btn btn-outline-light me-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDemo">
+                    <i class="bi bi-list"></i> Menu
+                </button>
+                <button class="btn btn-gradient" data-bs-toggle="modal" data-bs-target="#demoModal">
+                    <i class="bi bi-play-fill"></i> Demo
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Hero Section -->
+<section id="hero" class="hero-section">
+    <div class="container hero-content text-center text-white">
+        <div data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="hero-title mb-4">Bootstrap 5</h1>
+            <h3 class="mb-4 fw-light">The World's Most Popular Frontend Framework</h3>
+            <p class="lead mb-5">Build fast, responsive sites with Bootstrap - the world's most popular framework for building responsive, mobile-first sites.</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <button class="btn btn-gradient btn-lg" onclick="showToast()">
+                    <i class="bi bi-download me-2"></i>Get Started
+                </button>
+                <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#videoModal">
+                    <i class="bi bi-play-circle me-2"></i>Watch Demo
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <i class="bi bi-chevron-down fs-2"></i>
+    </div>
+</section>
+
+<!-- About Bootstrap Section -->
+<section id="about" class="section bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div data-aos="fade-up" data-aos-duration="800" class="text-center mb-5">
+                    <h2 class="display-4 fw-bold mb-4">What is Bootstrap?</h2>
+                    <p class="lead text-muted">Bootstrap is the world's most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0 me-3">
+                                <i class="bi bi-check-circle-fill text-success fs-2"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold">Responsive Design</h5>
+                                <p class="text-muted">Bootstrap's responsive CSS adjusts to phones, tablets, and desktops using CSS media queries.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" data-aos="fade-left" data-aos-delay="300">
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0 me-3">
+                                <i class="bi bi-lightning-fill text-warning fs-2"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold">Fast Development</h5>
+                                <p class="text-muted">Pre-built components and utilities help you build interfaces faster than ever before.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" data-aos="fade-right" data-aos-delay="400">
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0 me-3">
+                                <i class="bi bi-gear-fill text-primary fs-2"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold">Customizable</h5>
+                                <p class="text-muted">Customize Bootstrap with your own CSS or by using Sass variables to fit your brand.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" data-aos="fade-left" data-aos-delay="500">
+                        <div class="d-flex align-items-start">
+                            <div class="flex-shrink-0 me-3">
+                                <i class="bi bi-people-fill text-info fs-2"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold">Community Driven</h5>
+                                <p class="text-muted">Millions of developers worldwide use Bootstrap to build amazing web experiences.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Image Carousel Section -->
+    <section id="showcase" class="section">
+        <div class="container-fluid px-0">
+            <div data-aos="fade-up" class="text-center mb-5">
+                <h2 class="display-4 fw-bold mb-4">Bootstrap in Action</h2>
+                <p class="lead text-muted">See Bootstrap's power in beautiful, responsive designs</p>
+            </div>
+            
+            <div id="bootstrapCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#bootstrapCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#bootstrapCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#bootstrapCarousel" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#bootstrapCarousel" data-bs-slide-to="3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=600&fit=crop" class="d-block w-100" alt="Modern Dashboard">
+                        <div class="carousel-caption">
+                            <h3 class="fw-bold">Modern Dashboards</h3>
+                            <p class="lead">Create stunning admin interfaces with Bootstrap's grid system and components.</p>
+                            <button class="btn btn-gradient">Explore Dashboards</button>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop" class="d-block w-100" alt="Responsive Design">
+                        <div class="carousel-caption">
+                            <h3 class="fw-bold">Responsive Websites</h3>
+                            <p class="lead">Build mobile-first websites that look perfect on any device size.</p>
+                            <button class="btn btn-gradient">View Examples</button>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=600&fit=crop" class="d-block w-100" alt="Team Collaboration">
+                        <div class="carousel-caption">
+                            <h3 class="fw-bold">E-commerce Platforms</h3>
+                            <p class="lead">Bootstrap powers millions of online stores with its flexible components.</p>
+                            <button class="btn btn-gradient">Shop Examples</button>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&h=600&fit=crop" class="d-block w-100" alt="Technology">
+                        <div class="carousel-caption">
+                            <h3 class="fw-bold">Landing Pages</h3>
+                            <p class="lead">Create conversion-focused landing pages with Bootstrap's marketing components.</p>
+                            <button class="btn btn-gradient">Get Template</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#bootstrapCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#bootstrapCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section bg-pattern">
+        <div class="container">
+            <div data-aos="fade-up" class="text-center mb-5">
+                <h2 class="display-4 fw-bold mb-4">Bootstrap Features</h2>
+                <p class="lead text-muted">Discover the powerful features that make Bootstrap the top choice for developers</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card card h-100 p-4 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-grid-3x3-gap feature-icon mb-3"></i>
+                            <h5 class="card-title fw-bold">Flexible Grid System</h5>
+                            <p class="card-text text-muted">12-column responsive grid system that scales up to 12 columns as the device or viewport size increases.</p>
+                            <button class="btn btn-outline-primary btn-sm">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card card h-100 p-4 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-palette feature-icon mb-3"></i>
+                            <h5 class="card-title fw-bold">Extensive Components</h5>
+                            <p class="card-text text-muted">Over 20 flexible components including buttons, cards, navbars, modals, and much more.</p>
+                            <button class="btn btn-outline-primary btn-sm">Explore Components</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card card h-100 p-4 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-code-slash feature-icon mb-3"></i>
+                            <h5 class="card-title fw-bold">JavaScript Plugins</h5>
+                            <p class="card-text text-muted">Interactive components powered by JavaScript including carousels, modals, tooltips, and dropdowns.</p>
+                            <button class="btn btn-outline-primary btn-sm">View Plugins</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card card h-100 p-4 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-brush feature-icon mb-3"></i>
+                            <h5 class="card-title fw-bold">Sass Variables</h5>
+                            <p class="card-text text-muted">Customize Bootstrap's Sass variables to create your own unique design system and brand colors.</p>
+                            <button class="btn btn-outline-primary btn-sm">Customize</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-card card h-100 p-4 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-speedometer2 feature-icon mb-3"></i>
+                            <h5 class="card-title fw-bold">Utility Classes</h5>
+                            <p class="card-text text-muted">Hundreds of utility classes for spacing, colors, typography, flexbox, and positioning.</p>
+                            <button class="btn btn-outline-primary btn-sm">See Utilities</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-card card h-100 p-4 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-award feature-icon mb-3"></i>
+                            <h5 class="card-title fw-bold">Accessibility</h5>
+                            <p class="card-text text-muted">Built with accessibility in mind, including proper ARIA attributes and keyboard navigation.</p>
+                            <button class="btn btn-outline-primary btn-sm">Learn A11y</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Progress Section -->
+    <section id="skills" class="section bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="display-5 fw-bold mb-4">Master Web Development</h2>
+                    <p class="lead text-muted mb-5">Track your progress as you learn modern web development technologies alongside Bootstrap.</p>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-semibold">HTML5 & Semantic Markup</span>
+                            <span class="badge bg-success">95%</span>
+                        </div>
+                        <div class="progress-modern">
+                            <div class="progress-bar-modern" style="width: 95%" data-aos="slide-right" data-aos-delay="200"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-semibold">CSS3 & Flexbox/Grid</span>
+                            <span class="badge bg-info">90%</span>
+                        </div>
+                        <div class="progress-modern">
+                            <div class="progress-bar-modern" style="width: 90%" data-aos="slide-right" data-aos-delay="400"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-semibold">Bootstrap Framework</span>
+                            <span class="badge bg-primary">88%</span>
+                        </div>
+                        <div class="progress-modern">
+                            <div class="progress-bar-modern" style="width: 88%" data-aos="slide-right" data-aos-delay="600"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-semibold">JavaScript & ES6+</span>
+                            <span class="badge bg-warning">82%</span>
+                        </div>
+                        <div class="progress-modern">
+                            <div class="progress-bar-modern" style="width: 82%" data-aos="slide-right" data-aos-delay="800"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-semibold">React.js Development</span>
+                            <span class="badge bg-danger">75%</span>
+                        </div>
+                        <div class="progress-modern">
+                            <div class="progress-bar-modern" style="width: 75%" data-aos="slide-right" data-aos-delay="1000"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                    <div class="text-center">
+                        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=500&h=600&fit=crop" alt="Learning" class="img-fluid rounded shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Components Demo Section -->
+    <section id="components" class="section">
+        <div class="container">
+            <div data-aos="fade-up" class="text-center mb-5">
+                <h2 class="display-4 fw-bold mb-4">Interactive Components</h2>
+                <p class="lead text-muted">Experience Bootstrap's powerful components in action</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Accordion -->
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h4 class="mb-3">Accordion Component</h4>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    <i class="bi bi-question-circle me-2"></i>What makes Bootstrap special?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Bootstrap provides a comprehensive set of CSS and JavaScript components that help developers build responsive, mobile-first websites quickly and efficiently.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    <i class="bi bi-gear me-2"></i>How customizable is Bootstrap?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Extremely customizable! You can modify Sass variables, create custom themes, override CSS classes, and even build your own component library on top of Bootstrap's foundation.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                    <i class="bi bi-phone me-2"></i>Is Bootstrap mobile-first?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    Yes! Bootstrap is designed mobile-first, meaning it's optimized for mobile devices first, then scaled up for tablets and desktops using responsive breakpoints.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Badges and Alerts -->
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h4 class="mb-3">Badges & Alerts</h4>
+                    <div class="mb-3">
+                        <h6>Status Badges:</h6>
+                        <span class="badge bg-primary me-1">Primary</span>
+                        <span class="badge bg-secondary me-1">Secondary</span>
+                        <span class="badge bg-success me-1">Success</span>
+                        <span class="badge bg-danger me-1">Danger</span>
+                        <span class="badge bg-warning text-dark me-1">Warning</span>
+                        <span class="badge bg-info text-dark me-1">Info</span>
+                    </div>
+                    
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="bi bi-check-circle me-2"></i>
+                        <strong>Well done!</strong> You're exploring Bootstrap components successfully.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    
+                    <div class="alert alert-info" role="alert">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <strong>Did you know?</strong> Bootstrap 5 removed jQuery dependency for better performance.
+                    </div>
+                    
+                    <!-- Button Group -->
+                    <h6 class="mt-4 mb-2">Button Groups:</h6>
+                    <div class="btn-group" role="group">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="btnradio1">HTML</label>
+                        
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio2">CSS</label>
+                        
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio3">JS</label>
+                    </div>
+                </div>
+                
+                <!-- Form Components -->
+                <div class="col-12 mt-5" data-aos="fade-up">
+                    <h4 class="mb-3">Form Components</h4>
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="John">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Doe">
+                        </div>
+                        <div class="col-12">
+                            <label for="email" class="form-label">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text">@</span>
+                                <input type="email" class="form-control" id="email" placeholder="john.doe@example.com">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="country" class="form-label">Country</label>
+                            <select class="form-select" id="country">
+                                <option selected>Choose...</option>
+                                <option>United States</option>
+                                <option>Canada</option>
+                                <option>Mexico</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="skills" class="form-label">Skills</label>
+                            <input type="range" class="form-range" id="skills" min="0" max="100" step="10">
+                        </div>
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="newsletter">
+                                <label class="form-check-label" for="newsletter">
+                                    Subscribe to newsletter
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-gradient">
+                                <i class="bi bi-send me-2"></i>Submit Form
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="col-12 mt-4" data-aos="fade-up">
+                    <h4 class="mb-3">Pagination</h4>
+                    <nav>
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item">
+                                <a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"><i class="bi bi-chevron-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div data-aos="fade-up" class="text-center mb-5">
+                        <h2 class="display-4 fw-bold mb-4">Get In Touch</h2>
+                        <p class="lead text-muted">Have questions about Bootstrap? We'd love to hear from you!</p>
+                    </div>
+                    
+                    <div class="card shadow-lg border-0" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-body p-5">
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Name *</label>
+                                        <input type="text" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Email *</label>
+                                        <input type="email" class="form-control" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Subject</label>
+                                        <select class="form-select">
+                                            <option>General Question</option>
+                                            <option>Technical Support</option>
+                                            <option>Business Inquiry</option>
+                                            <option>Feedback</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Message *</label>
+                                        <textarea class="form-control" rows="5" placeholder="Tell us about your project or question..." required></textarea>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <button type="submit" class="btn btn-gradient btn-lg">
+                                            <i class="bi bi-send me-2"></i>Send Message
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="bi bi-bootstrap-fill me-2"></i>Bootstrap Demo
+                    </h5>
+                    <p class="text-muted">Showcasing the power and flexibility of Bootstrap 5 framework with modern design patterns and interactive components.</p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-github"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#hero" class="text-muted text-decoration-none">Home</a></li>
+                        <li><a href="#about" class="text-muted text-decoration-none">About</a></li>
+                        <li><a href="#features" class="text-muted text-decoration-none">Features</a></li>
+                        <li><a href="#components" class="text-muted text-decoration-none">Components</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3">Resources</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">Documentation</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Examples</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Themes</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Icons</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h6 class="fw-bold mb-3">Stay Updated</h6>
+                    <p class="text-muted small mb-3">Get the latest Bootstrap updates and tips delivered to your inbox.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Enter email">
+                        <button class="btn btn-gradient" type="button">
+                            <i class="bi bi-envelope"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-muted mb-0">&copy; 2024 Bootstrap Demo. Built with Bootstrap 5.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <small class="text-muted">Made with <i class="bi bi-heart-fill text-danger"></i> using Bootstrap</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Demo Modal -->
+    <div class="modal fade" id="demoModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="bi bi-play-circle me-2"></i>Bootstrap Demo</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="bi bi-bootstrap-fill" style="font-size: 4rem; color: #ff6200;"></i> <!-- Orange icon -->
+                        <h4 class="mt-3">Welcome to Bootstrap 5!</h4>
+                        <p class="lead text-muted">This interactive demo showcases Bootstrap's most powerful features including:</p>
+                        <div class="row g-3 mt-3">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                    <span>Responsive Grid System</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                    <span>Interactive Components</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                    <span>Modern Animations</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                    <span>Utility Classes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-gradient">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="modal fade" id="videoModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="bi bi-camera-video me-2"></i>Bootstrap Tutorial</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="ratio ratio-16x9">
+                        <div class="d-flex align-items-center justify-content-center bg-light">
+                            <div class="text-center">
+                                <i class="bi bi-play-circle text-primary" style="font-size: 4rem;"></i>
+                                <h5 class="mt-3">Video Tutorial Coming Soon</h5>
+                                <p class="text-muted">Learn Bootstrap 5 from basics to advanced concepts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Offcanvas -->
+    <div class="offcanvas offcanvas-end offcanvas-custom" tabindex="-1" id="offcanvasDemo">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Bootstrap Navigation</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="list-group list-group-flush">
+                <a href="#hero" class="list-group-item list-group-item-action bg-transparent text-white border-light" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-house me-2"></i>Home
+                </a>
+                <a href="#about" class="list-group-item list-group-item-action bg-transparent text-white border-light" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-info-circle me-2"></i>About Bootstrap
+                </a>
+                <a href="#features" class="list-group-item list-group-item-action bg-transparent text-white border-light" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-star me-2"></i>Features
+                </a>
+                <a href="#showcase" class="list-group-item list-group-item-action bg-transparent text-white border-light" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-images me-2"></i>Showcase
+                </a>
+                <a href="#components" class="list-group-item list-group-item-action bg-transparent text-white border-light" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-puzzle me-2"></i>Components
+                </a>
+                <a href="#skills" class="list-group-item list-group-item-action bg-transparent text-white border-light" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-graph-up me-2"></i>Skills
+                </a>
+                <a href="#contact" class="list-group-item list-group-item-action bg-transparent text-white border-light" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-envelope me-2"></i>Contact
+                </a>
+            </div>
+            <hr class="text-white">
+            <div class="mt-3">
+                <h6>Quick Actions</h6>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-outline-light" onclick="showToast()">
+                        <i class="bi bi-bell me-2"></i>Show Toast
+                    </button>
+                    <button class="btn btn-outline-light" data-bs-toggle="tooltip" title="This is a tooltip!">
+                        <i class="bi bi-info-circle me-2"></i>Tooltip Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast toast-custom" role="alert">
+            <div class="toast-header">
+                <i class="bi bi-bootstrap-fill text-primary me-2"></i>
+                <strong class="me-auto">Bootstrap Demo</strong>
+                <small class="text-muted">just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                Welcome to our Bootstrap 5 interactive demo! Explore all the amazing features.
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar-custom');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Toast function
+        function showToast() {
+            const toastElement = document.getElementById('liveToast');
+            const toast = new bootstrap.Toast(toastElement);
+            toast.show();
+        }
+
+        // Initialize tooltips
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navbarHeight = document.querySelector('.navbar-custom').offsetHeight;
+                    window.scrollTo({
+                        top: target.offsetTop - navbarHeight,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                showToast();
+            });
+        });
+
+        // Add loading state to buttons
+        document.querySelectorAll('.btn-gradient').forEach(button => {
+            button.addEventListener('click', function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Loading...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }, 2000);
+            });
+        });
+
+        // Random quote generator for hero section
+        const quotes = [
+            "Build fast, responsive sites with Bootstrap",
+            "The world's most popular frontend framework",
+            "Create beautiful, mobile-first designs",
+            "Powerful, extensible, and feature-packed toolkit"
+        ];
+        
+        setInterval(() => {
+            const heroText = document.querySelector('.hero-section p.lead');
+            if (heroText) {
+                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                heroText.style.opacity = '0';
+                setTimeout(() => {
+                    heroText.textContent = randomQuote;
+                    heroText.style.opacity = '1';
+                }, 300);
+            }
+        }, 5000);
+
+        // Auto-start carousel
+        const carousel = document.querySelector('#bootstrapCarousel');
+        if (carousel) {
+            const bsCarousel = new bootstrap.Carousel(carousel, {
+                interval: 4000,
+                wrap: true
+            });
+        }
+
+        // Add ripple effect to buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('btn-gradient')) {
+                const button = e.target;
+                const rect = button.getBoundingClientRect();
+                const ripple = document.createElement('span');
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                button.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            }
+        });
+
+        // Show welcome toast on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                showToast();
+            }, 1000);
+        });
+    </script>
+
+    <style>
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .hero-section p.lead {
+            transition: opacity 0.3s ease;
+        }
+    </style>
+
+        <footer class="footer text-center py-4">
+        <p class="mb-0 footer-animate">
+            Developed by <b>Feroj Tamang</b> - Bootstrap Demo Page © 2025
+        </p>
+        </footer>
+</body>
+</html>

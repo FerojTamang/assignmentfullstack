@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Demo – FullStack ePortfolio</title>
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="../vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../vendor/bootstrap-icons/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/common.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top nav-animate">
+            <div class="container">
+                <a class="navbar-brand brand-animate" href="../index.html">
+                    <i class="bi bi-code-slash"></i> Full Stack Assignment
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link link-animate" href="html-demo.html"><i class="bi bi-filetype-html"></i> HTML Demo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-animate" style="animation-delay: 0.1s;" href="css-demo.html"><i class="bi bi-filetype-css"></i> CSS Demo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-animate" style="animation-delay: 0.2s;" href="javascript-demo.html"><i class="bi bi-filetype-js"></i> JS Demo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-animate" style="animation-delay: 0.3s;" href="bootstrap-demo.html"><i class="bi bi-bootstrap"></i> Bootstrap Demo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link-animate" style="animation-delay: 0.4s;" href="fullstack-demo.html"><i class="bi bi-database"></i> Full Stack Demo</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      
+    </header>
+
+    <main class="container">
+        <!-- Introduction Section -->
+        <section id="intro" class="mt-5">
+            <header>
+                <h1 class="text-center mb-4 section-title">JavaScript Demo</h1>
+            </header>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card custom-card mb-4 card-animate">
+                        <div class="card-header bg-gradient-orange text-white">
+                            <h5 class="card-title mb-0">What is JavaScript?</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                JavaScript is a programming language that adds interactivity to websites. It powers dynamic features like form validation, calculations, real-time updates, timers, task management, and interactive galleries, enhancing user experience in the browser.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr class="section-divider">
+
+        <!-- Logic Operations Section -->
+        <section id="logic" class="mb-5">
+            <header>
+                <h2 class="text-center mb-4 section-title">Logic Operations</h2>
+            </header>
+            <div class="row g-4">
+                <!-- Dynamic Form Demo -->
+                <div class="col-md-4">
+                    <article class="card custom-card h-100 card-animate">
+                        <div class="card-header bg-gradient-orange text-white">
+                            <h5 class="card-title mb-0">Dynamic Form <span class="badge bg-dark">Form Processing</span></h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Submit and validate user input dynamically.</p>
+                            <form id="dynamicForm">
+                                <div class="mb-3">
+                                    <label for="dynamicName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="dynamicName" placeholder="Enter name" required aria-label="Name input" aria-describedby="dynamicNameHelp">
+                                    <div id="dynamicNameHelp" class="form-text">Enter your full name.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dynamicAge" class="form-label">Age</label>
+                                    <input type="number" class="form-control" id="dynamicAge" placeholder="Enter age" required aria-label="Age input" aria-describedby="dynamicAgeHelp">
+                                    <div id="dynamicAgeHelp" class="form-text">Enter your age.</div>
+                                </div>
+                                <button type="submit" class="btn btn-orange btn-block btn-animate" aria-label="Submit form">Submit</button>
+                            </form>
+                            <div id="dynamicResult" class="mt-3" role="alert"></div>
+                        </div>
+                    </article>
+                </div>
+                <!-- Calculator Demo -->
+                <div class="col-md-4">
+                    <article class="card custom-card h-100 card-animate" style="animation-delay: 0.1s;">
+                        <div class="card-header bg-gradient-orange text-white">
+                            <h5 class="card-title mb-0">Calculator <span class="badge bg-dark">Operators</span></h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Perform basic arithmetic operations with ease.</p>
+                            <div class="mb-3">
+                                <label for="calcNum1" class="form-label">Number 1</label>
+                                <input type="number" class="form-control mb-2" id="calcNum1" placeholder="Number 1" required aria-label="First number input" aria-describedby="calcNum1Help">
+                                <div id="calcNum1Help" class="form-text">Enter first number.</div>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <button class="btn btn-orange btn-operator btn-sm btn-animate" data-operation="add" onclick="selectOperator('add')" aria-label="Select addition">+</button>
+                                <button class="btn btn-orange btn-operator btn-sm btn-animate" data-operation="subtract" onclick="selectOperator('subtract')" aria-label="Select subtraction">-</button>
+                                <button class="btn btn-orange btn-operator btn-sm btn-animate" data-operation="multiply" onclick="selectOperator('multiply')" aria-label="Select multiplication">×</button>
+                                <button class="btn btn-orange btn-operator btn-sm btn-animate" data-operation="divide" onclick="selectOperator('divide')" aria-label="Select division">÷</button>
+                            </div>
+                            <div class="mb-3">
+                                <label for="calcNum2" class="form-label">Number 2</label>
+                                <input type="number" class="form-control mb-2" id="calcNum2" placeholder="Number 2" required aria-label="Second number input" aria-describedby="calcNum2Help">
+                                <div id="calcNum2Help" class="form-text">Enter second number.</div>
+                            </div>
+                            <button class="btn btn-orange btn-block btn-animate" onclick="calculate()" aria-label="Calculate result">Calculate</button>
+                            <div id="calcResult" class="mt-3" role="alert"></div>
+                            <div class="spinner-border text-orange mt-2" role="status" id="loadingSpinner" style="display: none;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <!-- Square Root Demo -->
+                <div class="col-md-4">
+                    <article class="card custom-card h-100 card-animate" style="animation-delay: 0.2s;">
+                        <div class="card-header bg-gradient-orange text-white">
+                            <h5 class="card-title mb-0">Square Root <span class="badge bg-dark">Math</span></h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Calculate the square root of a number.</p>
+                            <div class="mb-3">
+                                <label for="sqrtInput" class="form-label">Enter Number</label>
+                                <input type="number" class="form-control" id="sqrtInput" placeholder="Enter a number" required aria-label="Number for square root" aria-describedby="sqrtInputHelp">
+                                <div id="sqrtInputHelp" class="form-text">Enter a non-negative number.</div>
+                            </div>
+                            <button class="btn btn-orange btn-block btn-animate" onclick="calculateSqrt()" aria-label="Calculate square root">Calculate</button>
+                            <div id="sqrtResult" class="mt-3" role="alert"></div>
+                        </div>
+                    </article>
+                </div>
+                <!-- Error Handling Demo -->
+                <div class="col-md-4">
+                    <article class="card custom-card h-100 card-animate" style="animation-delay: 0.3s;">
+                        <div class="card-header bg-gradient-orange text-white">
+                            <h5 class="card-title mb-0">Error Handling <span class="badge bg-dark">Debug</span></h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Validate if input is a number.</p>
+                            <div class="mb-3">
+                                <label for="errorInput" class="form-label">Enter Value</label>
+                                <input type="text" class="form-control" id="errorInput" placeholder="Enter a number" required aria-label="Input for error checking" aria-describedby="errorInputHelp">
+                                <div id="errorInputHelp" class="form-text">Enter any value to test.</div>
+                            </div>
+                            <button class="btn btn-orange btn-block btn-animate" onclick="runErrorDemo()" aria-label="Test input">Test Input</button>
+                            <div id="errorResult" class="mt-3" role="alert"></div>
+                        </div>
+                    </article>
+                </div>
+                <!-- To-Do List Demo -->
+                <div class="col-md-4">
+                    <article class="card custom-card h-100 card-animate">
+                        <div class="card-header bg-gradient-orange text-white">
+                            <h5 class="card-title mb-0">To-Do List <span class="badge bg-dark">Arrays & Loops</span></h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Manage tasks with add, remove, filter, and complete.</p>
+                            <div class="mb-3">
+                                <label for="todoInput" class="form-label">Enter Task</label>
+                                <input type="text" class="form-control" id="todoInput" placeholder="Enter task" required aria-label="Task input" aria-describedby="todoInputHelp">
+                                <div id="todoInputHelp" class="form-text">Add a task to the list.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="todoFilter" class="form-label">Filter Tasks</label>
+                                <input type="text" class="form-control" id="todoFilter" placeholder="Filter tasks" aria-label="Filter tasks input" aria-describedby="todoFilterHelp">
+                                <div id="todoFilterHelp" class="form-text">Type to filter tasks.</div>
+                            </div>
+                            <div class="d-flex flex-wrap gap-2">
+                                <button class="btn btn-orange btn-sm flex-grow-1 btn-animate" id="addTaskButton" aria-label="Add task">Add Task</button>
+                                <button class="btn btn-secondary btn-sm flex-grow-1 btn-animate" id="clearTasksButton" aria-label="Clear all tasks">Clear All</button>
+                                <button class="btn btn-warning btn-sm flex-grow-1 btn-animate" id="clearCompletedButton" aria-label="Clear completed tasks">Clear Completed</button>
+                            </div>
+                            <div id="taskCounter" class="mt-3 text-muted" aria-live="polite">Tasks: 0 (Completed: 0)</div>
+                            <ul id="todoList" class="list-group mt-3"></ul>
+                        </div>
+                    </article>
+                </div>
+                <!-- Real-Time Validation Demo -->
+                <div class="col-md-4">
+                    <article class="card custom-card h-100 card-animate" style="animation-delay: 0.1s;">
+                        <div class="card-header bg-gradient-orange text-white">
+                            <h5 class="card-title mb-0">Real-Time Validation <span class="badge bg-dark">Events</span></h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Validate input as you type and see it below.</p>
+                            <div class="mb-3">
+                                <label for="realTimeInput" class="form-label">Enter Text</label>
+                                <input type="text" class="form-control" id="realTimeInput" placeholder="Enter at least 3 characters" aria-label="Real-time input" aria-describedby="realTimeInputHelp" oninput="validateInputRealTime()">
+                                <div id="realTimeInputHelp" class="form-text">Input must be 3+ characters.</div>
+                            </div>
+                            <div id="realTimeInputDisplay" class="mt-2 text-muted" aria-live="polite"></div>
+                            <div id="realTimeResult" class="mt-3" role="alert"></div>
+                        </div>
+                    </article>
+                </div>
+                <!-- Timer Demo -->
+                <div class="col-md-4">
+                    <article class="card custom-card h-100 card-animate" style="animation-delay: 0.2s;">
+                        <div class="card-header bg-gradient-orange text-white">
+                            <h5 class="card-title mb-0">Countdown Timer <span class="badge bg-dark">Timers</span></h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Set a countdown timer with progress.</p>
+                            <div class="mb-3">
+                                <label for="timerInput" class="form-label">Seconds</label>
+                                <input type="number" class="form-control" id="timerInput" placeholder="Enter seconds" min="1" aria-label="Timer duration input" aria-describedby="timerInputHelp">
+                                <div id="timerInputHelp" class="form-text">Enter time in seconds.</div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-orange btn-sm flex-grow-1 btn-animate" onclick="startTimer(document.getElementById('timerInput').value)" aria-label="Start timer">Start</button>
+                                <button class="btn btn-secondary btn-sm flex-grow-1 btn-animate" onclick="stopTimer()" aria-label="Stop timer">Stop</button>
+                            </div>
+                            <div id="timerDisplay" class="mt-3" role="alert">Timer not started</div>
+                            <div class="progress mt-2">
+                                <div id="timerProgress" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <hr class="section-divider">
+
+        <!-- With vs. Without JavaScript Section -->
+        <section id="comparison" class="mb-5">
+            <header>
+                <h2 class="text-center mb-4 section-title">With vs. Without JavaScript</h2>
+            </header>
+            <div class="row g-4">
+                <!-- Without JS -->
+                <div class="col-md-6">
+                    <article class="card custom-card h-100 card-animate">
+                        <div class="card-header bg-gradient-orange text-white">
+                            <h5 class="card-title mb-0">Without JavaScript: Static Gallery</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Images are displayed statically without interactivity.</p>
+                            <div class="row g-2">
+                                <div class="col-4">
+                                    <img src="../img/js2.png" class="img-fluid rounded" alt="Static image 1">
+                                </div>
+                                <div class="col-4">
+                                    <img src="../img/js3.png" class="img-fluid rounded" alt="Static image 2">
+                                </div>
+                                <div class="col-4">
+                                    <img src="../img/js1.png" class="img-fluid rounded" alt="Static image 3">
+                                </div>
+                            </div>
+                            <div class="alert alert-warning mt-3" role="alert">
+                                No JavaScript: Images are static, no navigation or interactivity!
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <!-- With JS -->
+                <div class="col-md-6">
+                    <article class="card custom-card h-100 card-animate">
+                        <div class="card-header bg-gradient-orange text-white">
+                            <h5 class="card-title mb-0">With JavaScript: Interactive Carousel</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Navigate images dynamically with a carousel.</p>
+                            <div id="imageCarousel" class="carousel slide" data-bs-ride="true" data-bs-interval="2000">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="../img/js2.png" class="d-block w-100 rounded" alt="Carousel image 1">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="../img/js3.png" class="d-block w-100 rounded" alt="Carousel image 2">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="../img/js1.png" class="d-block w-100 rounded" alt="Carousel image 3">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev" aria-label="Previous slide">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next" aria-label="Next slide">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="alert alert-success mt-3" role="alert">
+                                JavaScript Enabled: Interactive carousel with navigation!
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast for Notifications -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div class="toast toast-animate" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="4000">
+            <div class="toast-header">
+                <strong class="me-auto">Notification</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastMessage"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center py-4">
+        <p class="mb-0 footer-animate">
+            Developed by <b>Feroj Tamang</b> - JavaScript Demo Page © 2025
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="../js/javascript-demo.js"></script>
+    <script src="../js/script.js"></script>
+    <script>
+        // Add floating animation for cards on hover
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.custom-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.classList.add('float-animation');
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.classList.remove('float-animation');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

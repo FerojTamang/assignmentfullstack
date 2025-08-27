@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Demo – FullStack ePortfolio</title>
+    <!-- Vendor CSS for Bootstrap and Icons (required for navbar functionality and icons) -->
+    <link rel="stylesheet" href="../vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../vendor/animate/animate.min.css">
+    <link rel="stylesheet" href="../vendor/bootstrap-icons/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <div class="container">
+                <a class="navbar-brand animate__animated animate__bounceIn" href="../index.html">
+                    <i class="bi bi-code-slash"></i> Full Stack Assignment
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link animate__animated animate__fadeInDown" href="../pages/html-demo.html"><i class="bi bi-filetype-html"></i> HTML Demo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link animate__animated animate__fadeInDown" style="animation-delay: 0.2s;" href="../pages/css-demo.html"><i class="bi bi-filetype-css"></i> CSS Demo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link animate__animated animate__fadeInDown" style="animation-delay: 0.4s;" href="../pages/javascript-demo.html"><i class="bi bi-filetype-js"></i> JS Demo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link animate__animated animate__fadeInDown" style="animation-delay: 0.6s;" href="../pages/bootstrap-demo.html"><i class="bi bi-bootstrap"></i> Bootstrap Demo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link animate__animated animate__fadeInDown" style="animation-delay: 0.8s;" href="../pages/fullstack-demo.html"><i class="bi bi-database"></i> Full Stack Demo</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- In-page Navigation -->
+        <nav align="center">
+            <a href="#intro">Intro</a> |
+            <a href="#inline-block">Inline vs Block</a> |
+            <a href="#features">Features</a> |
+            <a href="#examples">Examples</a> |
+            <a href="#interactive">Interactive</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Heading and explanation -->
+        <article id="intro">
+            <header>
+                <h1>What is HTML?</h1>
+            </header>
+            <p>
+                HTML (HyperText Markup Language) is the standard language for creating web pages. 
+                It forms the <strong>structure of a webpage</strong> by defining headings, paragraphs, lists, tables, links, images, and other content. 
+                It can also support basic interactivity without CSS or advanced JavaScript.
+            </p>
+        </article>
+        <hr>
+
+        <!-- Inline vs Block Tags -->
+        <article id="inline-block">
+            <header>
+                <h2>Inline vs Block-level Tags</h2>
+            </header>
+            <p>
+                Block elements take up the full width and start on a new line, while inline elements occupy only as much space as needed and stay in line with text.
+            </p>
+            <table border="3" width="80%" align="center" cellspacing="3" cellpadding="8">
+                <thead>
+                    <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Example Tags</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Block-level</td>
+                        <td>&lt;div&gt;, &lt;p&gt;, &lt;h1&gt;-&lt;h6&gt;, &lt;section&gt;, &lt;article&gt;, &lt;aside&gt;, &lt;header&gt;, &lt;footer&gt;</td>
+                        <td>Starts on a new line, takes full width, can contain block and inline elements.</td>
+                    </tr>
+                    <tr>
+                        <td>Inline</td>
+                        <td>&lt;span&gt;, &lt;a&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;img&gt;, &lt;mark&gt;</td>
+                        <td>Flows within text, occupies only content width, usually contains text or inline elements.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <hr>
+
+        <!-- HTML Features -->
+        <article id="features">
+            <header>
+                <h2>Important Features of HTML</h2>
+            </header>
+            <ul>
+                <li>Defines structure with headings, paragraphs, lists, tables, links, images, forms, and media.</li>
+                <li>Supports semantic elements like &lt;header&gt;, &lt;footer&gt;, &lt;article&gt;, &lt;section&gt;, &lt;aside&gt; for accessibility.</li>
+                <li>Includes multimedia with &lt;audio&gt; and &lt;video&gt;.</li>
+                <li>Enables forms and basic interactivity.</li>
+                <li>Controls content flow with inline and block elements.</li>
+                <li>Facilitates navigation with hyperlinks.</li>
+            </ul>
+        </article>
+        <hr>
+
+        <!-- HTML Examples -->
+        <article id="examples">
+            <header>
+                <h2>HTML Examples</h2>
+            </header>
+
+            <!-- Image -->
+            <section>
+                <h3>Image Tag</h3>
+                <p>Example of an image using &lt;img&gt; tag:</p>
+                <fieldset>
+                    <legend>Image Examples</legend>
+                    <figure align="left">
+                        <img src="https://via.placeholder.com/150" alt="Placeholder Image" width="150">
+                        <figcaption>Placeholder Image Example</figcaption>
+                    </figure>
+                    <figure align="right">
+                        <img src="../img/html.jpg" alt="HTML Skeleton Illustration" width="300" style="filter: grayscale(100%);">
+                        <figcaption>HTML Skeleton Illustration</figcaption>
+                    </figure>
+                </fieldset>
+            </section>
+            <br>
+
+            <!-- Audio -->
+            <section>
+                <h3>Audio Tag</h3>
+                <p>Example of an audio player using &lt;audio&gt; tag:</p>
+                <fieldset>
+                    <legend>Audio Player</legend>
+                    <figure align="center">
+                        <audio controls aria-label="Sample audio player">
+                            <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <figcaption>Sample Audio Player</figcaption>
+                    </figure>
+                </fieldset>
+            </section>
+            <br>
+
+            <!-- Form -->
+            <section>
+                <h3>Form Tag</h3>
+                <p>Example of a simple HTML form with basic logic:</p>
+                <fieldset>
+                    <legend>Form Input</legend>
+                    <form action="javascript:alert('Form submitted! Name: ' + document.getElementById('username').value + ', Email: ' + document.getElementById('email').value);" method="get">
+                        <label for="username">Username:</label><br>
+                        <input type="text" id="username" name="username" placeholder="Enter username" required aria-label="Username input"><br>
+                        <label for="email">Email:</label><br>
+                        <input type="email" id="email" name="email" placeholder="Enter email" required aria-label="Email input"><br>
+                        <button type="submit" aria-label="Submit form">Submit</button>
+                    </form>
+                </fieldset>
+            </section>
+            <br>
+
+            <!-- Semantic Tags -->
+            <section>
+                <h3>Semantic HTML5 Tags</h3>
+                <fieldset>
+                    <legend>Semantic Examples</legend>
+                    <article>
+                        <h4>&lt;article&gt;</h4>
+                        <p>Represents a self-contained piece of content.</p>
+                    </article>
+                    <aside>
+                        <h4>&lt;aside&gt;</h4>
+                        <p>Contains related content, like a sidebar.</p>
+                    </aside>
+                    <section>
+                        <h4>&lt;section&gt;</h4>
+                        <p>Represents a thematic grouping of content.</p>
+                    </section>
+                </fieldset>
+            </section>
+        </article>
+        <hr>
+
+        <!-- Interactive HTML Logic -->
+        <article id="interactive">
+            <header>
+                <h2>Interactive HTML Logic</h2>
+            </header>
+            <p>Toggle content visibility using a details element:</p>
+            <fieldset>
+                <legend>Toggle Content</legend>
+                <details aria-label="Toggle content visibility">
+                    <summary>Click to Expand</summary>
+                    <p>This content is hidden until you click the summary. HTML supports native interactivity like this!</p>
+                </details>
+            </fieldset>
+            <br>
+            <p>Simple checkbox to show/hide a message:</p>
+            <fieldset>
+                <legend>Show/Hide Message</legend>
+                <label for="showMessage">Show Message</label>
+                <input type="checkbox" id="showMessage" onchange="document.getElementById('hiddenMessage').style.display = this.checked ? 'block' : 'none';" aria-label="Toggle message visibility">
+                <div id="hiddenMessage" style="display:none;">
+                    <p>Hello! This message appears when the checkbox is checked.</p>
+                </div>
+            </fieldset>
+            <br>
+            <p>Commonly Used HTML Tags:</p>
+            <table border="3" width="80%" align="center" cellspacing="3" cellpadding="8">
+                <thead>
+                    <tr>
+                        <th scope="col">Tag</th>
+                        <th scope="col">Purpose</th>
+                        <th scope="col">Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>&lt;html&gt;</td><td>Defines the root of an HTML document</td><td>&lt;html lang="en"&gt;...&lt;/html&gt;</td></tr>
+                    <tr><td>&lt;head&gt;</td><td>Contains metadata and links</td><td>&lt;head&gt;&lt;title&gt;Demo&lt;/title&gt;&lt;/head&gt;</td></tr>
+                    <tr><td>&lt;title&gt;</td><td>Sets the webpage title</td><td>&lt;title&gt;HTML5 Demo&lt;/title&gt;</td></tr>
+                    <tr><td>&lt;body&gt;</td><td>Holds visible content</td><td>&lt;body&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/body&gt;</td></tr>
+                    <tr><td>&lt;h1&gt; to &lt;h6&gt;</td><td>Defines headings</td><td>&lt;h1&gt;Heading&lt;/h1&gt;</td></tr>
+                    <tr><td>&lt;p&gt;</td><td>Creates a paragraph</td><td>&lt;p&gt;Text here&lt;/p&gt;</td></tr>
+                    <tr><td>&lt;a&gt;</td><td>Creates hyperlinks</td><td>&lt;a href="index.html"&gt;Home&lt;/a&gt;</td></tr>
+                    <tr><td>&lt;img&gt;</td><td>Embeds images</td><td>&lt;img src="image.jpg" alt="Description"&gt;</td></tr>
+                    <tr><td>&lt;ul&gt;</td><td>Defines an unordered list</td><td>&lt;ul&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ul&gt;</td></tr>
+                    <tr><td>&lt;ol&gt;</td><td>Defines an ordered list</td><td>&lt;ol&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ol&gt;</td></tr>
+                    <tr><td>&lt;li&gt;</td><td>Represents a list item</td><td>&lt;li&gt;Item&lt;/li&gt;</td></tr>
+                    <tr><td>&lt;table&gt;</td><td>Creates a table</td><td>&lt;table&gt;&lt;tr&gt;&lt;td&gt;Cell&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</td></tr>
+                    <tr><td>&lt;tr&gt;</td><td>Defines a table row</td><td>&lt;tr&gt;&lt;td&gt;Row&lt;/td&gt;&lt;/tr&gt;</td></tr>
+                    <tr><td>&lt;th&gt;</td><td>Specifies a table header</td><td>&lt;th&gt;Header&lt;/th&gt;</td></tr>
+                    <tr><td>&lt;td&gt;</td><td>Specifies a table data cell</td><td>&lt;td&gt;Data&lt;/td&gt;</td></tr>
+                    <tr><td>&lt;form&gt;</td><td>Creates a form</td><td>&lt;form&gt;&lt;input&gt;&lt;/form&gt;</td></tr>
+                    <tr><td>&lt;input&gt;</td><td>Adds input fields</td><td>&lt;input type="text" name="name"&gt;</td></tr>
+                    <tr><td>&lt;label&gt;</td><td>Provides a label for input</td><td>&lt;label for="name"&gt;Name&lt;/label&gt;</td></tr>
+                    <tr><td>&lt;button&gt;</td><td>Creates a clickable button</td><td>&lt;button&gt;Click Me&lt;/button&gt;</td></tr>
+                    <tr><td>&lt;div&gt;</td><td>Block-level container</td><td>&lt;div&gt;Content&lt;/div&gt;</td></tr>
+                    <tr><td>&lt;span&gt;</td><td>Inline container</td><td>&lt;span&gt;Text&lt;/span&gt;</td></tr>
+                    <tr><td>&lt;strong&gt;</td><td>Makes text bold, indicates importance</td><td>&lt;strong&gt;Important&lt;/strong&gt;</td></tr>
+                    <tr><td>&lt;em&gt;</td><td>Italicizes text, indicates emphasis</td><td>&lt;em&gt;Emphasis&lt;/em&gt;</td></tr>
+                    <tr><td>&lt;section&gt;</td><td>Thematic grouping of content</td><td>&lt;section&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/section&gt;</td></tr>
+                    <tr><td>&lt;article&gt;</td><td>Self-contained content</td><td>&lt;article&gt;&lt;p&gt;Article&lt;/p&gt;&lt;/article&gt;</td></tr>
+                    <tr><td>&lt;aside&gt;</td><td>Secondary content</td><td>&lt;aside&gt;&lt;p&gt;Sidebar&lt;/p&gt;&lt;/aside&gt;</td></tr>
+                    <tr><td>&lt;header&gt;</td><td>Header section</td><td>&lt;header&gt;&lt;nav&gt;&lt;/nav&gt;&lt;/header&gt;</td></tr>
+                    <tr><td>&lt;footer&gt;</td><td>Footer section</td><td>&lt;footer&gt;&lt;p&gt;Footer&lt;/p&gt;&lt;/footer&gt;</td></tr>
+                    <tr><td>&lt;nav&gt;</td><td>Groups navigation links</td><td>&lt;nav&gt;&lt;a href="home"&gt;Home&lt;/a&gt;&lt;/nav&gt;</td></tr>
+                    <tr><td>&lt;audio&gt;</td><td>Embeds audio content</td><td>&lt;audio controls&gt;&lt;source src="audio.mp3"&gt;&lt;/audio&gt;</td></tr>
+                    <tr><td>&lt;details&gt;</td><td>Creates a disclosure widget</td><td>&lt;details&gt;&lt;summary&gt;Click&lt;/summary&gt;&lt;p&gt;Content&lt;/p&gt;&lt;/details&gt;</td></tr>
+                </tbody>
+            </table>
+        </article>
+        <hr>
+
+        <!-- Footer -->
+        <footer align="center">
+            <p>&copy; Developed by <b>Feroj Tamang</b> © 2025</p>
+
+        </footer>
+    </main>
+
+    <!-- Vendor JavaScript for Bootstrap (required for navbar functionality) -->
+    <script src="../vendor/bootstrap/bootstrap.bundle.min.js"></script>

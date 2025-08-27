@@ -1,0 +1,16 @@
+.external-example {
+    background-color: #fff3cd;
+    padding: 20px;
+    border: 2px solid #ffc107;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.external-example:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.5);
+}
+
+.external-example .card-title {
+    color: #856404;
+}

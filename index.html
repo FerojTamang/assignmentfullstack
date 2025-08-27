@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Stack Assignment</title>
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/animate/animate.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap-icons/font/bootstrap-icons.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        :root {
+            --primary-orange: #F28C38;
+            --navy-blue: #1C2526;
+        }
+        body {
+            background-color: #f8f9fa;
+            color: var(--navy-blue);
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar {
+            background-color: var(--navy-blue) !important;
+        }
+        .navbar-brand, .nav-link {
+            color: var(--primary-orange) !important;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #fff !important;
+            transform: scale(1.1);
+        }
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-orange), var(--navy-blue));
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section img {
+            max-width: 350px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+        .hero-section img:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+        .btn-primary {
+            background-color: var(--primary-orange);
+            border-color: var(--primary-orange);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--navy-blue);
+            border-color: var(--navy-blue);
+            transform: translateY(-3px);
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        .footer {
+            background-color: var(--navy-blue);
+            color: var(--primary-orange);
+        }
+        .bi {
+            font-size: 1.5rem;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand animate__animated animate__bounceIn" href="#">
+                <i class="bi bi-code-slash"></i> Full Stack Assignment
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeInDown" href="pages/html-demo.html"><i class="bi bi-filetype-html"></i> HTML Demo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeInDown" style="animation-delay: 0.2s;" href="pages/css-demo.html"><i class="bi bi-filetype-css"></i> CSS Demo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeInDown" style="animation-delay: 0.4s;" href="pages/javascript-demo.html"><i class="bi bi-filetype-js"></i> JS Demo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeInDown" style="animation-delay: 0.6s;" href="pages/bootstrap-demo.html"><i class="bi bi-bootstrap"></i> Bootstrap Demo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeInDown" style="animation-delay: 0.8s;" href="pages/fullstack-demo.html"><i class="bi bi-database"></i> Full Stack Demo</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-3 animate__animated animate__zoomIn">Full Stack Assignment Showcase</h1>
+            <p class="lead animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+                Dive into a vibrant collection of HTML, CSS, JavaScript, Bootstrap, and Full-Stack demos!
+            </p>
+            <img src="img/full.png" alt="Full Stack Illustration" class="img-fluid my-4 animate__animated animate__tada">
+            <a href="#demos" class="btn btn-primary btn-lg animate__animated animate__pulse animate__infinite">
+                Explore Demos
+            </a>
+        </div>
+    </section>
+
+    <!-- Demos Section -->
+    <section id="demos" class="container my-5">
+        <h2 class="text-center mb-5 animate__animated animate__bounceIn">Our Demos</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card animate__animated animate__fadeInLeft">
+                    <img src="img/front.webp" class="card-img-top" alt="Frontend Demo">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-code"></i> Frontend Demos</h5>
+                        <p class="card-text">Explore the art of frontend development with our HTML, CSS, and JavaScript demos.</p>
+                        <div class="d-flex justify-content-around">
+                            <a href="pages/html-demo.html" class="btn btn-outline-primary btn-sm">HTML</a>
+                            <a href="pages/css-demo.html" class="btn btn-outline-primary btn-sm">CSS</a>
+                            <a href="pages/javascript-demo.html" class="btn btn-outline-primary btn-sm">JavaScript</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                    <img src="img/back.webp" class="card-img-top" alt="Bootstrap Demo">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-bootstrap-fill"></i> Bootstrap Demo</h5>
+                        <p class="card-text">See how Bootstrap powers responsive, modern, and sleek UI designs.</p>
+                        <a href="pages/bootstrap-demo.html" class="btn btn-primary w-100">View Bootstrap Demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card animate__animated animate__fadeInRight" style="animation-delay: 0.4s;">
+                    <img src="img/database.png" class="card-img-top" alt="Full Stack Demo">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="bi bi-database-fill"></i> Full Stack Demo</h5>
+                        <p class="card-text">Experience a fully integrated application with frontend and backend harmony.</p>
+                        <a href="pages/fullstack-demo.html" class="btn btn-primary w-100">View Full Stack Demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-center py-4">
+        <p class="mb-0 animate__animated animate__fadeInUp">
+            <i class="bi bi-heart-fill"></i> Crafted with passion for the Full Stack Assignment &copy; 2025
+        </p>
+    </footer>
+
+    <!-- Vendor JavaScript -->
+    <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="js/script.js"></script>
+    <script src="js/supabase.js"></script>
+    <script>
+        // Add scroll animation trigger
+        document.addEventListener('DOMContentLoaded', function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.card, .navbar-brand, .nav-link').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
