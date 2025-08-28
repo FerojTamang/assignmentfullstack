@@ -8,17 +8,18 @@
     <!-- Linking bootstrap file -->
     <link rel="stylesheet" href="../vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../vendor/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../vendor/animate/animate.min.css">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/common.css">
 </head>
 <body>
 
-    <!-- Navbar -->
+   <!-- Navbar -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark sticky-top nav-animate">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container">
-                <a class="navbar-brand brand-animate" href="../index.html">
+                <a class="navbar-brand animate__animated animate__bounceIn" href="../index.html">
                     <i class="bi bi-code-slash"></i> Full Stack Assignment
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,19 +28,19 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link link-animate" href="html-demo.html"><i class="bi bi-filetype-html"></i> HTML Demo</a>
+                            <a class="nav-link animate__animated animate__fadeInDown" href="../pages/html-demo.html"><i class="bi bi-filetype-html"></i> HTML Demo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link link-animate" style="animation-delay: 0.1s;" href="css-demo.html"><i class="bi bi-filetype-css"></i> CSS Demo</a>
+                            <a class="nav-link animate__animated animate__fadeInDown" style="animation-delay: 0.2s;" href="../pages/css-demo.html"><i class="bi bi-filetype-css"></i> CSS Demo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link link-animate" style="animation-delay: 0.2s;" href="javascript-demo.html"><i class="bi bi-filetype-js"></i> JS Demo</a>
+                            <a class="nav-link animate__animated animate__fadeInDown" style="animation-delay: 0.4s;" href="../pages/javascript-demo.html"><i class="bi bi-filetype-js"></i> JS Demo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link link-animate" style="animation-delay: 0.3s;" href="bootstrap-demo.html"><i class="bi bi-bootstrap"></i> Bootstrap Demo</a>
+                            <a class="nav-link animate__animated animate__fadeInDown" style="animation-delay: 0.6s;" href="../pages/bootstrap-demo.html"><i class="bi bi-bootstrap"></i> Bootstrap Demo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link link-animate" style="animation-delay: 0.4s;" href="fullstack-demo.html"><i class="bi bi-database"></i> Full Stack Demo</a>
+                            <a class="nav-link animate__animated animate__fadeInDown" style="animation-delay: 0.8s;" href="../pages/fullstack-demo.html"><i class="bi bi-database"></i> Full Stack Demo</a>
                         </li>
                     </ul>
                 </div>
@@ -360,7 +361,7 @@
     <script>
 
         // Add floating animation for cards on hover
-        
+
         document.addEventListener('DOMContentLoaded', function () {
             const cards = document.querySelectorAll('.custom-card');
             cards.forEach(card => {
