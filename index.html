@@ -11,78 +11,131 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        :root {
-            --primary-orange: #F28C38;
-            --navy-blue: #1C2526;
-        }
-        body {
-            background-color: #f8f9fa;
-            color: var(--navy-blue);
-            font-family: 'Arial', sans-serif;
-        }
-        .navbar {
-            background-color: var(--navy-blue) !important;
-        }
-        .navbar-brand, .nav-link {
-            color: var(--primary-orange) !important;
-            transition: color 0.3s ease;
-        }
-        .nav-link:hover {
-            color: #fff !important;
-            transform: scale(1.1);
-        }
+   <style>
+    :root {
+        --primary-orange: #F28C38;
+        --navy-blue: #1C2526;
+    }
+    body {
+        background-color: #f8f9fa;
+        color: var(--navy-blue);
+        font-family: 'Arial', sans-serif;
+    }
+    .navbar {
+        background-color: var(--navy-blue) !important;
+    }
+    .navbar-brand, .nav-link {
+        color: var(--primary-orange) !important;
+        transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+        color: #fff !important;
+        transform: scale(1.1);
+    }
+    .hero-section {
+        background: linear-gradient(135deg, var(--primary-orange), var(--navy-blue));
+        color: white;
+        padding: 100px 0;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero-section img {
+        max-width: 350px;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        transition: transform 0.5s ease;
+    }
+    .hero-section img:hover {
+        transform: scale(1.05) rotate(5deg);
+    }
+    .btn-primary {
+        background-color: var(--primary-orange);
+        border-color: var(--primary-orange);
+        transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+        background-color: var(--navy-blue);
+        border-color: var(--navy-blue);
+        transform: translateY(-3px);
+    }
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+    .footer {
+        background-color: var(--navy-blue);
+        color: var(--primary-orange);
+    }
+    .bi {
+        font-size: 1.5rem;
+        margin-right: 8px;
+    }
+
+    
+    @media (max-width: 768px) {
         .hero-section {
-            background: linear-gradient(135deg, var(--primary-orange), var(--navy-blue));
-            color: white;
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
+            padding: 50px 0; 
         }
         .hero-section img {
-            max-width: 350px;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            transition: transform 0.5s ease;
+            max-width: 250px; 
         }
-        .hero-section img:hover {
-            transform: scale(1.05) rotate(5deg);
+        .hero-section .btn-primary {
+            font-size: 1rem; 
+            padding: 8px 16px;
         }
-        .btn-primary {
-            background-color: var(--primary-orange);
-            border-color: var(--primary-orange);
-            transition: all 0.3s ease;
+        .navbar-nav {
+            text-align: center; 
         }
-        .btn-primary:hover {
-            background-color: var(--navy-blue);
-            border-color: var(--navy-blue);
-            transform: translateY(-3px);
+        .navbar-collapse {
+            padding: 10px 0; 
+        #demos .row {
+            flex-direction: column; 
         }
         .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px; 
         }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        .card .btn {
+            width: 100%; 
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero-section h1 {
+            font-size: 2rem; 
+        }
+        .hero-section .lead {
+            font-size: 1rem; 
+        }
+        .navbar-brand {
+            font-size: 1.2rem; 
+        }
+        .nav-link {
+            font-size: 0.9rem; 
         }
         .card-img-top {
-            height: 200px;
-            object-fit: cover;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
+            height: 150px; 
         }
-        .footer {
-            background-color: var(--navy-blue);
-            color: var(--primary-orange);
+        .card .card-title {
+            font-size: 1.1rem; 
         }
-        .bi {
-            font-size: 1.5rem;
-            margin-right: 8px;
+        .card .card-text {
+            font-size: 0.9rem; 
         }
-    </style>
+    }
+}
+</style>
 </head>
 <body>
     <!-- Navigation Bar -->

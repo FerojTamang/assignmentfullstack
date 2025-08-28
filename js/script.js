@@ -63,11 +63,31 @@ document.getElementById('studentForm').addEventListener('submit', async (e) => {
 
     // Client-side validation
     if (!name || !college || !course) {
-        alert('Please fill all required fields correctly.');
+        const notification = document.getElementById('customNotification');
+        const notificationMessage = document.getElementById('notificationMessage');
+        notificationMessage.textContent = 'Please fill all required fields correctly.';
+        notification.classList.remove('d-none');
+        notification.classList.remove('alert-success');
+        notification.classList.add('alert-danger');
+        setTimeout(() => {
+            notification.classList.add('d-none');
+            notification.classList.remove('alert-danger');
+            notification.classList.add('alert-success');
+        }, 3000);
         return;
     }
     if (isNaN(age) || age < 1 || age > 100) {
-        alert('Please enter a valid age (1-100).');
+        const notification = document.getElementById('customNotification');
+        const notificationMessage = document.getElementById('notificationMessage');
+        notificationMessage.textContent = 'Please enter a valid age (1-100).';
+        notification.classList.remove('d-none');
+        notification.classList.remove('alert-success');
+        notification.classList.add('alert-danger');
+        setTimeout(() => {
+            notification.classList.add('d-none');
+            notification.classList.remove('alert-danger');
+            notification.classList.add('alert-success');
+        }, 3000);
         return;
     }
 
@@ -80,13 +100,39 @@ document.getElementById('studentForm').addEventListener('submit', async (e) => {
         
         if (success) {
             document.getElementById('studentForm').reset();
-            alert('Student added successfully!');
+            const notification = document.getElementById('customNotification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            notificationMessage.textContent = 'Student added successfully!';
+            notification.classList.remove('d-none');
+            setTimeout(() => {
+                notification.classList.add('d-none');
+            }, 3000);
             await loadStudents();
         } else {
-            alert('Failed to add student. Check console for details.');
+            const notification = document.getElementById('customNotification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            notificationMessage.textContent = 'Failed to add student. Check console for details.';
+            notification.classList.remove('d-none');
+            notification.classList.remove('alert-success');
+            notification.classList.add('alert-danger');
+            setTimeout(() => {
+                notification.classList.add('d-none');
+                notification.classList.remove('alert-danger');
+                notification.classList.add('alert-success');
+            }, 3000);
         }
     } catch (error) {
-        alert('Error adding student: ' + error.message);
+        const notification = document.getElementById('customNotification');
+        const notificationMessage = document.getElementById('notificationMessage');
+        notificationMessage.textContent = 'Error adding student: ' + error.message;
+        notification.classList.remove('d-none');
+        notification.classList.remove('alert-success');
+        notification.classList.add('alert-danger');
+        setTimeout(() => {
+            notification.classList.add('d-none');
+            notification.classList.remove('alert-danger');
+            notification.classList.add('alert-success');
+        }, 3000);
         console.error('Add student error:', error);
     } finally {
         submitButton.disabled = false;
@@ -94,52 +140,31 @@ document.getElementById('studentForm').addEventListener('submit', async (e) => {
     }
 });
 
-// Show students - SINGLE EVENT LISTENER
+// Show students
 document.getElementById('showStudents').addEventListener('click', async () => {
     console.log('Show students button clicked');
     await loadStudents();
 });
 
-// Fallback function to force show modal
+// Fallback function to show modal
 function showModalFallback(modalElement) {
     console.log('Using fallback method to show modal');
     
-    // Remove any existing backdrop
-    const existingBackdrop = document.querySelector('.modal-backdrop');
-    if (existingBackdrop) {
-        existingBackdrop.remove();
-    }
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
     
-    // Force show modal
     modalElement.style.display = 'block';
-    modalElement.style.zIndex = '10000';
     modalElement.classList.add('show');
     modalElement.setAttribute('aria-modal', 'true');
     modalElement.setAttribute('role', 'dialog');
     modalElement.removeAttribute('aria-hidden');
     
-    // Create and add backdrop
     const backdrop = document.createElement('div');
     backdrop.className = 'modal-backdrop fade show';
-    backdrop.style.zIndex = '9999';
-    backdrop.id = 'manual-backdrop';
+    backdrop.style.zIndex = '1040';
     document.body.appendChild(backdrop);
+    
     document.body.classList.add('modal-open');
-    
-    console.log('Fallback modal should now be visible');
-    
-    // Add click handlers for backdrop and close button
-    backdrop.addEventListener('click', () => closeModalFallback(modalElement));
-    
-    const closeBtn = modalElement.querySelector('.btn-close');
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => closeModalFallback(modalElement));
-    }
-    
-    const cancelBtn = modalElement.querySelector('[data-bs-dismiss="modal"]');
-    if (cancelBtn) {
-        cancelBtn.addEventListener('click', () => closeModalFallback(modalElement));
-    }
+    document.body.style.overflow = 'hidden';
 }
 
 // Fallback function to close modal
@@ -152,20 +177,16 @@ function closeModalFallback(modalElement) {
     modalElement.removeAttribute('aria-modal');
     modalElement.removeAttribute('role');
     
-    const backdrop = document.getElementById('manual-backdrop');
-    if (backdrop) {
-        backdrop.remove();
-    }
-    
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
     document.body.classList.remove('modal-open');
+    document.body.style.overflow = 'auto';
+    document.body.style.paddingRight = '';
     
-    // Reset form
     document.getElementById('editStudentForm').reset();
 }
 
-// Edit/Delete buttons - ENHANCED WITH FALLBACK
+// Edit/Delete buttons
 document.getElementById('studentList').addEventListener('click', async (e) => {
-    // Handle Edit button
     const editTarget = e.target.closest('.edit-btn');
     if (editTarget) {
         console.log('Edit button clicked for ID:', editTarget.dataset.id);
@@ -177,11 +198,20 @@ document.getElementById('studentList').addEventListener('click', async (e) => {
         const course = editTarget.dataset.course || '';
 
         if (!id || isNaN(id)) {
-            alert('Invalid student ID. Cannot open edit modal.');
+            const notification = document.getElementById('customNotification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            notificationMessage.textContent = 'Invalid student ID. Cannot open edit modal.';
+            notification.classList.remove('d-none');
+            notification.classList.remove('alert-success');
+            notification.classList.add('alert-danger');
+            setTimeout(() => {
+                notification.classList.add('d-none');
+                notification.classList.remove('alert-danger');
+                notification.classList.add('alert-success');
+            }, 3000);
             return;
         }
 
-        // Populate the modal fields
         document.getElementById('editId').value = id;
         document.getElementById('editName').value = name;
         document.getElementById('editAge').value = age;
@@ -189,18 +219,15 @@ document.getElementById('studentList').addEventListener('click', async (e) => {
         document.getElementById('editCollege').value = college;
         document.getElementById('editCourse').value = course;
 
-        // Reset button state
         const saveButton = document.getElementById('saveEditButton');
         saveButton.disabled = false;
         saveButton.innerHTML = '<i class="fas fa-save"></i> Save Changes';
 
-        // ENHANCED MODAL SHOWING with multiple fallback methods
         const modalElement = document.getElementById('editStudentModal');
         
         console.log('Attempting to show modal...');
         
         try {
-            // Method 1: Standard Bootstrap modal
             const modal = new bootstrap.Modal(modalElement, {
                 backdrop: true,
                 keyboard: true,
@@ -209,7 +236,6 @@ document.getElementById('studentList').addEventListener('click', async (e) => {
             modal.show();
             console.log('Bootstrap modal.show() called');
             
-            // Verify modal is actually visible after a brief delay
             setTimeout(() => {
                 const isVisible = modalElement.classList.contains('show') && 
                                 modalElement.style.display !== 'none';
@@ -220,7 +246,6 @@ document.getElementById('studentList').addEventListener('click', async (e) => {
                     showModalFallback(modalElement);
                 }
             }, 300);
-            
         } catch (error) {
             console.error('Bootstrap modal error:', error);
             showModalFallback(modalElement);
@@ -229,7 +254,6 @@ document.getElementById('studentList').addEventListener('click', async (e) => {
         return;
     }
 
-    // Handle Delete button
     const deleteTarget = e.target.closest('.delete-btn');
     if (deleteTarget) {
         console.log('Delete button clicked for ID:', deleteTarget.dataset.id);
@@ -239,20 +263,46 @@ document.getElementById('studentList').addEventListener('click', async (e) => {
             try {
                 const success = await deleteStudent(id);
                 if (success) {
-                    alert('Student deleted successfully!');
+                    const notification = document.getElementById('customNotification');
+                    const notificationMessage = document.getElementById('notificationMessage');
+                    notificationMessage.textContent = 'Student deleted successfully!';
+                    notification.classList.remove('d-none');
+                    setTimeout(() => {
+                        notification.classList.add('d-none');
+                    }, 3000);
                     await loadStudents();
                 } else {
-                    alert('Failed to delete student. Check console for details.');
+                    const notification = document.getElementById('customNotification');
+                    const notificationMessage = document.getElementById('notificationMessage');
+                    notificationMessage.textContent = 'Failed to delete student. Check console for details.';
+                    notification.classList.remove('d-none');
+                    notification.classList.remove('alert-success');
+                    notification.classList.add('alert-danger');
+                    setTimeout(() => {
+                        notification.classList.add('d-none');
+                        notification.classList.remove('alert-danger');
+                        notification.classList.add('alert-success');
+                    }, 3000);
                 }
             } catch (error) {
-                alert('Error deleting student: ' + error.message);
+                const notification = document.getElementById('customNotification');
+                const notificationMessage = document.getElementById('notificationMessage');
+                notificationMessage.textContent = 'Error deleting student: ' + error.message;
+                notification.classList.remove('d-none');
+                notification.classList.remove('alert-success');
+                notification.classList.add('alert-danger');
+                setTimeout(() => {
+                    notification.classList.add('d-none');
+                    notification.classList.remove('alert-danger');
+                    notification.classList.add('alert-success');
+                }, 3000);
                 console.error('Delete student error:', error);
             }
         }
     }
 });
 
-// Save edit - ENHANCED WITH FALLBACK MODAL CLOSING
+// Save edit
 document.getElementById('saveEditButton').addEventListener('click', async () => {
     console.log('Save button clicked');
     
@@ -268,17 +318,47 @@ document.getElementById('saveEditButton').addEventListener('click', async () => 
     // Client-side validation
     if (!id || isNaN(id)) {
         console.error('Invalid ID:', id);
-        alert('Invalid student ID. Cannot update student.');
+        const notification = document.getElementById('customNotification');
+        const notificationMessage = document.getElementById('notificationMessage');
+        notificationMessage.textContent = 'Invalid student ID. Cannot update student.';
+        notification.classList.remove('d-none');
+        notification.classList.remove('alert-success');
+        notification.classList.add('alert-danger');
+        setTimeout(() => {
+            notification.classList.add('d-none');
+            notification.classList.remove('alert-danger');
+            notification.classList.add('alert-success');
+        }, 3000);
         return;
     }
     if (!name || !college || !course) {
         console.error('Missing fields:', { name, college, course });
-        alert('Please fill all required fields correctly.');
+        const notification = document.getElementById('customNotification');
+        const notificationMessage = document.getElementById('notificationMessage');
+        notificationMessage.textContent = 'Please fill all required fields correctly.';
+        notification.classList.remove('d-none');
+        notification.classList.remove('alert-success');
+        notification.classList.add('alert-danger');
+        setTimeout(() => {
+            notification.classList.add('d-none');
+            notification.classList.remove('alert-danger');
+            notification.classList.add('alert-success');
+        }, 3000);
         return;
     }
     if (isNaN(age) || age < 1 || age > 100) {
         console.error('Invalid age:', age);
-        alert('Please enter a valid age (1-100).');
+        const notification = document.getElementById('customNotification');
+        const notificationMessage = document.getElementById('notificationMessage');
+        notificationMessage.textContent = 'Please enter a valid age (1-100).';
+        notification.classList.remove('d-none');
+        notification.classList.remove('alert-success');
+        notification.classList.add('alert-danger');
+        setTimeout(() => {
+            notification.classList.add('d-none');
+            notification.classList.remove('alert-danger');
+            notification.classList.add('alert-success');
+        }, 3000);
         return;
     }
 
@@ -286,52 +366,101 @@ document.getElementById('saveEditButton').addEventListener('click', async () => 
     saveButton.disabled = true;
     saveButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
 
+    let success = false;
     try {
         console.log('Calling updateStudent with ID:', id, 'Data:', { name, age, school, college, course });
         
-        const success = await updateStudent(id, name, age, school, college, course);
+        success = await updateStudent(id, name, age, school, college, course);
         
         if (success) {
-            // Close modal with fallback
+            // Close modal with enhanced reliability
             try {
-                const modal = bootstrap.Modal.getInstance(modalElement);
-                if (modal) {
-                    modal.hide();
-                } else {
-                    // Fallback: create new instance and hide
-                    const newModal = new bootstrap.Modal(modalElement);
-                    newModal.hide();
-                }
+                const modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+                modal.hide();
+                
+                // Wait for modal hide animation to complete
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                // Force cleanup
+                modalElement.style.display = 'none';
+                modalElement.classList.remove('show');
+                modalElement.setAttribute('aria-hidden', 'true');
+                modalElement.removeAttribute('aria-modal');
+                modalElement.removeAttribute('role');
+
+                document.querySelectorAll('.modal-backdrop').forEach(backdrop => backdrop.remove());
+                document.body.classList.remove('modal-open');
+                document.body.style.overflow = 'auto';
+                document.body.style.paddingRight = '';
+
+                console.log('Modal closed and cleaned up successfully');
             } catch (modalError) {
-                console.error('Error closing modal with Bootstrap, using fallback:', modalError);
+                console.error('Error closing modal with Bootstrap:', modalError);
                 closeModalFallback(modalElement);
             }
-            
+
+            // Reset form
             document.getElementById('editStudentForm').reset();
-            alert('Student updated successfully!');
-            await loadStudents();
         } else {
             console.error('Update failed silently for ID:', id);
-            alert('Failed to update student. Check console for details.');
+            const notification = document.getElementById('customNotification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            notificationMessage.textContent = 'Failed to update student. Check console for details.';
+            notification.classList.remove('d-none');
+            notification.classList.remove('alert-success');
+            notification.classList.add('alert-danger');
+            setTimeout(() => {
+                notification.classList.add('d-none');
+                notification.classList.remove('alert-danger');
+                notification.classList.add('alert-success');
+            }, 3000);
         }
     } catch (error) {
         console.error('Update student error for ID:', id, error);
-        alert('Error updating student: ' + error.message);
+        const notification = document.getElementById('customNotification');
+        const notificationMessage = document.getElementById('notificationMessage');
+        notificationMessage.textContent = 'Error updating student: ' + error.message;
+        notification.classList.remove('d-none');
+        notification.classList.remove('alert-success');
+        notification.classList.add('alert-danger');
+        setTimeout(() => {
+            notification.classList.add('d-none');
+            notification.classList.remove('alert-danger');
+            notification.classList.add('alert-success');
+        }, 3000);
     } finally {
-        // Always restore button state
+        // Restore button state
         saveButton.disabled = false;
         saveButton.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+    }
+
+    // Show success message and reload students
+    if (success) {
+        const notification = document.getElementById('customNotification');
+        const notificationMessage = document.getElementById('notificationMessage');
+        notificationMessage.textContent = 'Student updated successfully!';
+        notification.classList.remove('d-none');
+        setTimeout(() => {
+            notification.classList.add('d-none');
+        }, 3000);
+        
+        await loadStudents();
+        
+        // Force UI refresh
+        const tableContainer = document.querySelector('.table-container');
+        tableContainer.style.display = 'none';
+        void tableContainer.offsetHeight;
+        tableContainer.style.display = 'block';
+        document.body.style.pointerEvents = 'auto';
     }
 });
 
 // Handle modal events to reset state
 document.getElementById('editStudentModal').addEventListener('hidden.bs.modal', function () {
-    // Reset button state when modal is closed
     const saveButton = document.getElementById('saveEditButton');
     saveButton.disabled = false;
     saveButton.innerHTML = '<i class="fas fa-save"></i> Save Changes';
     
-    // Reset form
     document.getElementById('editStudentForm').reset();
 });
 
@@ -339,6 +468,11 @@ document.getElementById('editStudentModal').addEventListener('hidden.bs.modal', 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('DOM content loaded, loading students...');
     await loadStudents();
+});
+
+// Debug UI interactivity
+document.addEventListener('click', (e) => {
+    console.log('Document clicked at:', e.target);
 });
 
 // Export loadStudents for potential external use

@@ -76,8 +76,6 @@
             max-width: 1200px;
             margin-top: 60px;
             padding: 0 15px;
-            position: relative;
-            z-index: 1;
         }
         .card {
             border: none;
@@ -121,14 +119,17 @@
         }
         .form-floating > .form-control:focus ~ label,
         .form-floating > .form-control:not(:placeholder-shown) ~ label {
-            color: var(--primary-orange);
-            transform: scale(0.85) translateY(-0.5rem) translateX(1.5rem);
-            background: transparent;
-            padding: 0 0.2rem;
-            position: absolute;
-            top: -25px;
-            left: 0;
-            z-index: 0;
+         color: var(--primary-orange);
+         transform: scale(0.85) translateY(-0.5rem) translateX(1.5rem);
+         background: var(--neu-bg); 
+         padding: 2 2rem;
+         position: absolute;
+         top: -25px; 
+         left: 0;
+         z-index: 1; 
+         box-shadow: none; 
+         border: none; 
+         text-shadow: none; 
         }
         .form-floating > .form-control {
             padding-left: 1.5rem;
@@ -232,13 +233,11 @@
             opacity: 0;
             animation: fadeIn 0.5s ease-out forwards;
         }
-        
-        /* FIXED MODAL STYLES */
         .modal {
-            z-index: 9999 !important; /* Ensure modal is on top */
+            z-index: 1050 !important;
         }
         .modal-backdrop {
-            z-index: 9998 !important; /* Backdrop below modal but above everything else */
+            z-index: 1040 !important;
         }
         .modal-content {
             border-radius: 20px;
@@ -265,7 +264,6 @@
             border-top: 1px solid rgba(0,0,0,0.125);
             border-radius: 0 0 20px 20px;
         }
-        
         .carousel-inner img {
             border-radius: 20px;
             box-shadow: var(--neu-shadow-out), var(--neu-shadow-in);
@@ -290,6 +288,14 @@
         }
         body {
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="10" fill="%23ff7f00" opacity="0.5"/></svg>') 16 16, auto;
+        }
+        .alert {
+            border-radius: 10px;
+            box-shadow: var(--neu-shadow-out), var(--neu-shadow-in);
+            transition: opacity 0.3s ease;
+        }
+        .alert.d-none {
+            display: none !important;
         }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
@@ -378,6 +384,8 @@
         <p>5. <strong>Editing/Updating:</strong> Edit modal sends updated data back to the database via API, demonstrating full CRUD (Create, Read, Update, Delete) operations.</p>
         <p>This flow ensures data moves seamlessly between frontend, backend, and database, making the app dynamic and interactive!</p>
     </div>
+
+    <!-- Student Record Form -->
     
     <h1 id="studentRecords" class="mt-5">Student Records</h1>
     <div class="card">
@@ -411,6 +419,7 @@
         </form>
     </div>
 
+    <!-- Student table -->
     <div id="statusMessage"></div>
     <button id="showStudents" class="btn btn-info mb-3 d-block mx-auto" aria-label="Show Students"><i class="fas fa-list"></i> Show Students</button>
     <div class="table-container">
@@ -429,7 +438,7 @@
         </table>
     </div>
 
-    <!-- Edit Modal - FIXED -->
+    <!-- Edit Modal -->
     <div class="modal fade" id="editStudentModal" tabindex="-1" aria-labelledby="editStudentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -474,6 +483,16 @@
             </div>
         </div>
     </div>
+
+    <footer align="center" style="background-color: white; color: #1C2526;">
+    <p>&copy; Developed by <b>Feroj Tamang</b> - FullStack demo page © 2025</p>
+    </footer>
+
+    <!-- Custom Notification -->
+    <div id="customNotification" class="alert alert-success d-none" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 1100;">
+        <span id="notificationMessage"></span>
+        <button type="button" class="btn-close" aria-label="Close" onclick="document.getElementById('customNotification').classList.add('d-none')"></button>
+    </div>
 </div>
 
 <!-- Bootstrap JS -->
@@ -504,44 +523,4 @@
 <!-- Custom Script -->
 <script type="module" src="../js/script.js"></script>
 </body>
-
-
-
-
-
 </html>
-
-
-<script type="module">
-// Inline version of your key functionality
-document.getElementById('showStudents').addEventListener('click', () => {
-    console.log('Show students clicked - inline script working');
-    const studentList = document.getElementById('studentList');
-    studentList.innerHTML = `
-        <tr>
-            <td>Test Student</td>
-            <td>25</td>
-            <td>Test School</td>
-            <td>Test College</td>
-            <td>Test Course</td>
-            <td>
-                <button class="btn btn-sm btn-warning me-2 edit-btn" 
-                        data-id="1" 
-                        data-name="Test Student" 
-                        data-age="25">
-                    Edit
-                </button>
-            </td>
-        </tr>
-    `;
-});
-
-// Test edit functionality
-document.getElementById('studentList').addEventListener('click', (e) => {
-    if (e.target.closest('.edit-btn')) {
-        console.log('Edit button clicked - modal should open');
-        const modal = new bootstrap.Modal(document.getElementById('editStudentModal'));
-        modal.show();
-    }
-});
-</script>
