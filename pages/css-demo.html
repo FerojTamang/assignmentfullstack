@@ -11,340 +11,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../assets/css/common.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <style>
-        :root {
-            --primary-orange: #F28C38;
-            --navy-blue: #1C2526;
-            --dark-orange: #ff8c00;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f4;
-            scroll-behavior: smooth;
-            color: var(--navy-blue);
-        }
-        .navbar {
-            background-color: var(--navy-blue) !important;
-        }
-        .navbar-brand, .nav-link {
-            color: var(--primary-orange) !important;
-            transition: color 0.3s ease;
-        }
-        .nav-link:hover {
-            color: #fff !important;
-            transform: scale(1.1);
-        }
-        .bi {
-            font-size: 1.5rem;
-            margin-right: 8px;
-        }
-        /* Section animation */
-        .section-animate {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
-            margin-bottom: 50px;
-        }
-        .section-animate.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .section-animate.float {
-            animation: floatUpDown 3s ease-in-out infinite alternate;
-        }
-        @keyframes floatUpDown {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        /* Card */
-        .card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            padding: 15px;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.25);
-        }
-        .card h5 { color: var(--navy-blue); margin-bottom: 10px; }
-        .card img { width: 100%; border-radius: 8px; margin-bottom: 10px; }
-        /* Grid for cards */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        /* Button */
-        .btn {
-            background: var(--primary-orange);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-        .btn:hover {
-            transform: scale(1.05);
-            background: linear-gradient(45deg, var(--primary-orange), var(--dark-orange));
-        }
-        .btn[data-tooltip]:hover::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 120%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--navy-blue);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            white-space: nowrap;
-            opacity: 1;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
-        /* Accordion */
-        .accordion-item {
-            background: white;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .accordion-header {
-            padding: 10px 20px;
-            cursor: pointer;
-            background: var(--navy-blue);
-            color: white;
-            font-weight: bold;
-        }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            padding: 0 20px;
-            background: #f4f4f4;
-            transition: max-height 0.5s ease, padding 0.5s ease;
-        }
-        .accordion-content.show { max-height: 200px; padding: 10px 20px; }
-        /* Modal */
-        .modal-bg {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-        .modal {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-        }
-        .modal .close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 18px;
-        }
-        /* Form */
-        .custom-form {
-            background: linear-gradient(135deg, #fff, #f8f8f8);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            max-width: 500px;
-            margin: 0 auto 50px auto;
-            position: relative;
-            overflow: hidden;
-        }
-        .custom-form h5 {
-            color: var(--navy-blue);
-            font-size: 1.8rem;
-            text-align: center;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        .custom-form h5::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: var(--primary-orange);
-            border-radius: 2px;
-        }
-        .form-group {
-            position: relative;
-            margin-bottom: 25px;
-        }
-        .custom-form input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            background: #fff;
-            font-size: 1rem;
-            color: var(--navy-blue);
-            transition: all 0.3s ease;
-        }
-        .custom-form input:focus {
-            border-color: var(--primary-orange);
-            box-shadow: 0 0 8px rgba(242, 140, 56, 0.3);
-            outline: none;
-        }
-        .custom-form label {
-            position: absolute;
-            top: 50%;
-            left: 15px;
-            transform: translateY(-50%);
-            color: #666;
-            font-size: 1rem;
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-        .custom-form input:focus + label,
-        .custom-form input:not(:placeholder-shown) + label {
-            top: -10px;
-            left: 10px;
-            font-size: 0.8rem;
-            color: var(--primary-orange);
-            background: #fff;
-            padding: 0 5px;
-        }
-        .custom-form input:invalid:not(:placeholder-shown) {
-            border-color: #ff4444;
-        }
-        .custom-form input:valid:not(:placeholder-shown) {
-            border-color: #28a745;
-        }
-        .custom-form button {
-            width: 100%;
-            padding: 12px;
-            background: var(--primary-orange);
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        .custom-form button:hover {
-            background: var(--navy-blue);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        .custom-form button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
-        }
-        .custom-form button:hover::before {
-            width: 200px;
-            height: 200px;
-        }
-        .custom-form button:active {
-            transform: translateY(0);
-        }
-        .custom-form .animate__animated {
-            animation-duration: 0.5s;
-        }
-        /* Carousel */
-        .carousel-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            margin-bottom: 40px;
-        }
-        .carousel-slide { display: flex; transition: transform 0.8s ease-in-out; }
-        .carousel-slide img { width: 100%; flex-shrink: 0; }
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--primary-orange);
-            border: none;
-            color: white;
-            padding: 8px 12px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        .carousel-btn.prev { left: 10px; }
-        .carousel-btn.next { right: 10px; }
-        /* News Ticker */
-        .news-ticker {
-            background: var(--dark-orange);
-            color: white;
-            padding: 10px 0;
-            overflow: hidden;
-            position: relative;
-            font-weight: bold;
-        }
-        .news-ticker span {
-            display: inline-block;
-            white-space: nowrap;
-            padding-left: 100%;
-            animation: ticker 15s linear infinite;
-        }
-        @keyframes ticker { 0% { transform: translateX(0%); } 100% { transform: translateX(-100%); } }
-        .ticker-progress {
-            height: 5px;
-            background: var(--navy-blue);
-            width: 0%;
-            transition: width 15s linear;
-        }
-        /* Table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 50px;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background: var(--navy-blue); color: white; }
-        tr:hover { background: #f9f9f9; }
-        /* Footer */
-        footer {
-            background: var(--navy-blue);
-            color: white;
-            text-align: center;
-            padding: 15px 0;
-            font-weight: bold;
-            margin-top: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/css-demo.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -378,6 +45,7 @@
                 </div>
             </div>
         </nav>
+    </header>
 
     <!-- Intro Section -->
     <section id="intro" class="section-animate">
@@ -390,22 +58,22 @@
         <h2 style="text-align:center; margin-bottom:20px;">CSS Grid & Cards</h2>
         <div class="card-grid">
             <div class="card float">
-                <img src="https://picsum.photos/400/200?1" alt="CSS Grid">
+                <img src="../img/img1.jpg" alt="CSS Grid">
                 <h5>CSS Grid Layout</h5>
                 <p>Use grid to build flexible and responsive layouts.</p>
             </div>
             <div class="card float">
-                <img src="https://picsum.photos/400/200?2" alt="Flexbox">
+                <img src="../img/img2.jpg" alt="Flexbox">
                 <h5>Flexbox</h5>
                 <p>Align items easily with flexible containers.</p>
             </div>
             <div class="card float">
-                <img src="https://picsum.photos/400/200?3" alt="Animations">
+                <img src="../img/img3.jpg" alt="Animations">
                 <h5>CSS Animations</h5>
                 <p>Create smooth transitions and interactive elements.</p>
             </div>
             <div class="card float">
-                <img src="https://picsum.photos/400/200?4" alt="Hover Effects">
+                <img src="../img/img4.jpg" alt="Hover Effects">
                 <h5>Hover Effects</h5>
                 <p>Enhance UI with smooth hover transitions.</p>
             </div>
@@ -417,9 +85,9 @@
         <h2 style="text-align:center; margin-bottom:20px;">CSS Image Carousel</h2>
         <div class="carousel-container">
             <div class="carousel-slide" id="carouselSlide">
-                <img src="https://picsum.photos/1200/300?5" alt="Slide 1">
-                <img src="https://picsum.photos/1200/300?6" alt="Slide 2">
-                <img src="https://picsum.photos/1200/300?7" alt="Slide 3">
+                <img src="../img/img5.jpg" alt="Slide 1">
+                <img src="../img/img6.jpg" alt="Slide 2">
+                <img src="../img/img5.jpg" alt="Slide 3">
             </div>
             <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
             <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
@@ -437,28 +105,30 @@
     <!-- CSS Types Table -->
     <section id="table-section" class="section-animate">
         <h5 style="text-align:center; margin-bottom:20px;">CSS Types Overview</h5>
-        <table>
-            <tr>
-                <th>CSS Type</th>
-                <th>Description</th>
-                <th>Example Usage</th>
-            </tr>
-            <tr>
-                <td>Inline CSS</td>
-                <td>Applied directly inside an element using the <code>style</code> attribute</td>
-                <td>&lt;h1 style="color:orange;"&gt;Hello&lt;/h1&gt;</td>
-            </tr>
-            <tr>
-                <td>Internal CSS</td>
-                <td>Defined in the &lt;style&gt; tag within HTML head</td>
-                <td>&lt;style&gt; h1 {color: navy;} &lt;/style&gt;</td>
-            </tr>
-            <tr>
-                <td>External CSS</td>
-                <td>Stored in a separate .css file and linked via &lt;link&gt;</td>
-                <td>&lt;link rel="stylesheet" href="style.css"&gt;</td>
-            </tr>
-        </table>
+        <div class="custom-table-responsive">
+            <table>
+                <tr>
+                    <th class="css-type">CSS Type</th>
+                    <th class="description">Description</th>
+                    <th class="example-usage">Example Usage</th>
+                </tr>
+                <tr>
+                    <td class="css-type">Inline CSS</td>
+                    <td class="description">Applied directly inside an element using the <code>style</code> attribute</td>
+                    <td class="example-usage">&lt;h1 style="color:orange;"&gt;Hello&lt;/h1&gt;</td>
+                </tr>
+                <tr>
+                    <td class="css-type">Internal CSS</td>
+                    <td class="description">Defined in the &lt;style&gt; tag within HTML head</td>
+                    <td class="example-usage">&lt;style&gt; h1 {color: navy;} &lt;/style&gt;</td>
+                </tr>
+                <tr>
+                    <td class="css-type">External CSS</td>
+                    <td class="description">Stored in a separate .css file and linked via &lt;link&gt;</td>
+                    <td class="example-usage">&lt;link rel="stylesheet" href="style.css"&gt;</td>
+                </tr>
+            </table>
+        </div>
     </section>
 
     <!-- Accordion FAQ -->
@@ -501,7 +171,7 @@
 
     <!-- Footer -->
     <footer>
-       <p> Developed by <b>Feroj Tamang</b> - CSS demo page © 2025</p>
+        <p>Developed by <b>Feroj Tamang</b> - CSS demo page © 2025</p>
     </footer>
 
     <!-- Vendor JavaScript -->
@@ -563,3 +233,5 @@
             });
         });
     </script>
+</body>
+</html>
